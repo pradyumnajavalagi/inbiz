@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'home_page.dart';
+import 'home/pages/home_page.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -10,15 +10,17 @@ void main() async {
   await testPathProvider();
   await dotenv.load(fileName: ".env");
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 Future<void> testPathProvider() async {
   final directory = await getApplicationSupportDirectory();
-  print("App Support Directory: ${directory.path}");
+  debugPrint("App Support Directory: ${directory.path}");
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
