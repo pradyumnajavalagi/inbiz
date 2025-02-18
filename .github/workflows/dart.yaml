@@ -28,4 +28,4 @@ jobs:
         run: flutter pub get  # Removed unnecessary working-directory
 
       - name: Run Flutter Lint Check
-        run: flutter analyze  # Corrected command for Flutter projects
+        run: flutter analyze
