@@ -1,31 +1,27 @@
-name: Flutter Lint Checks
+name: Flutter Lint Check
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+  push:
+    branches:
+      - main
 
 jobs:
   lint:
+    name: Run Dart Analyze
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.16.0"  # Adjust based on the Flutter version that includes Dart 3.5.4
-          channel: stable
-          cache: true
+          flutter-version: stable
 
-      - name: Install dependencies
-        run: flutter pub get  # Removed unnecessary working-directory
+      - name: Install Dependencies
+        run: flutter pub get
 
-      - name: Run Flutter Lint Check
+      - name: Run Dart Analyze
         run: flutter analyze
