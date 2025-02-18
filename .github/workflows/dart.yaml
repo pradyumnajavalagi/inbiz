@@ -1,0 +1,31 @@
+name: Flutter Lint Checks
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version-file: pubspec.yaml  # Corrected this line
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get  # Removed unnecessary working-directory
+
+      - name: Run Flutter Lint Check
+        run: flutter analyze  # Corrected command for Flutter projects
